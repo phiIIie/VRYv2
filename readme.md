@@ -5,7 +5,7 @@
 ## Features
 - Display of hidden names
 - Display of agents and teamsides
-- Europa and Northamerica support
+- Europe and North America support
 - Interval state changes
 
 ## Hardware requirements
