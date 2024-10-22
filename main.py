@@ -2,11 +2,24 @@ import json, time
 from game import Game
 from players import Player
 from valclient import Client
+from colorama import init, Fore, Style
+import os
+
+running = True
+seenMatches = []
+def clear_console():
+
+    if os.name == 'nt':
+        os.system('cls')
+
+    else:
+        os.system('clear')
 
 running = True
 seenMatches = []
 
-print('VRYv2 Running')
+clear_console()
+print(Fore.RED + 'VRYv2 Running'.center(120))
 
 with open('settings.json', 'r') as f:
     data = json.load(f)
@@ -15,7 +28,9 @@ with open('settings.json', 'r') as f:
     stateinterval = data['stateInterval']
 
 if not ranbefore:
-    region = input('Enter your region: ').lower()
+    prompt = 'Enter your region: '
+    padding = (120 - len(prompt)) // 2
+    region = input(' ' * padding + prompt).lower()
 
     if region == "europe":
         region = "eu"
@@ -33,7 +48,7 @@ else:
     client = Client(region=region)
     client.activate()
 
-print('Waiting for match to get detected....')
+print('Waiting for match to get detected....'.center(120) + Style.RESET_ALL)
 while running:
     time.sleep(30)
     try:

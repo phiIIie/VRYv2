@@ -16,7 +16,7 @@
 
 #     return agentmap
 # agents_list = get_agents_from_api()
-
+from colorama import init, Fore, Style
 agentmap = {
     "add6443a-41bd-e414-f6ad-e58d267f4e95": "Jett",
     "a3bfb853-43b2-7238-a4f1-ad90e9e46bcc": "Reyna",
@@ -43,4 +43,32 @@ agentmap = {
     "0e38b510-41a8-5780-5e8f-568b2a4f2d6c": "Iso",
     "1dbf2edd-4729-0984-3115-daa5eed44993": "Clove",
     "efba5359-4016-a1e5-7626-b1ae76895940": "Vyse"
+}
+
+agent_color_map = {
+    "Jett": Fore.WHITE,
+    "Reyna": Fore.MAGENTA,
+    "Raze": Fore.LIGHTYELLOW_EX,
+    "Yoru": Fore.BLUE,
+    "Phoenix": Fore.RED,
+    "Neon": Fore.LIGHTBLUE_EX,
+    "Breach": Fore.YELLOW,
+    "Skye": Fore.GREEN,
+    "Sova": Fore.LIGHTCYAN_EX,
+    "Kayo": Fore.LIGHTWHITE_EX,
+    "Killjoy": Fore.LIGHTYELLOW_EX,
+    "Cypher": Fore.LIGHTWHITE_EX,
+    "Sage": Fore.LIGHTCYAN_EX,
+    "Chamber": Fore.LIGHTYELLOW_EX,
+    "Omen": Fore.LIGHTBLACK_EX,
+    "Brimstone": Style.DIM + Fore.LIGHTYELLOW_EX,
+    "Astra": Fore.LIGHTMAGENTA_EX,
+    "Viper": Fore.GREEN,
+    "Fade": Fore.LIGHTBLACK_EX,
+    "Harbor": Fore.LIGHTCYAN_EX,
+    "Gekko": Fore.LIGHTGREEN_EX,
+    "Deadlock": Fore.LIGHTBLACK_EX,
+    "Iso": Fore.LIGHTBLUE_EX,
+    "Clove": Fore.LIGHTMAGENTA_EX,
+    "Vyse": Fore.LIGHTBLACK_EX
 }
