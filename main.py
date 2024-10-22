@@ -19,7 +19,7 @@ running = True
 seen_matches = []
 
 clear_console()
-print(Fore.RED + 'VRYv2 Running'.center(120))
+print(Fore.LIGHTRED_EX + 'VRYv2 Running'.center(120))
 
 with open('settings.json', 'r') as f:
     data = json.load(f)
@@ -48,22 +48,22 @@ else:
     client = Client(region=region)
     client.activate()
 
-print('Waiting for match to get detected....'.center(120) + Style.RESET_ALL)
+print('Waiting for match to get detected...'.center(120) + Style.RESET_ALL)
 while running:
     time.sleep(30)
     try:
-        session_state = client.fetch_presence(client.p_uuid)['sessionLoopState']
-        match_id = client.coregame_fetch_player()['match_id']
+        session_state = client.fetch_presence(client.puuid)['sessionLoopState']
+        match_id = client.coregame_fetch_player()['MatchID']
 
         if session_state == 'INGAME' and match_id not in seen_matches:
-            print('-' * 40)
-            print('Match has been found. Loading data.')
+            print('-'.center(120) * 40)
+            print('Match has been found. Loading data.'.center(120))
             seen_matches.append(match_id)
             match_info = client.coregame_fetch_match(match_id)
             players = []
 
             for player in match_info['Players']:
-                if client.p_uuid == player['Subject']:
+                if client.puuid == player['Subject']:
                     local_player = Player(
                         client=client,
                         p_uuid=player['Subject'].lower(),
@@ -81,7 +81,7 @@ while running:
                     ))
             current_game = Game(party=client.fetch_party(), match_id=match_id, players=players, local_player=local_player)
             print('Printing Users:')
-            print('-' *20)
+            print('-' * 63)
             current_game.find_hidden_names(players)
     except Exception as e:
         if 'core' not in str(e) and "NoneType" not in str(e):

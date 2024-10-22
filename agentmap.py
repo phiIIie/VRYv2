@@ -50,7 +50,7 @@ agent_color_map = {
     "Reyna": Fore.MAGENTA,
     "Raze": Fore.LIGHTYELLOW_EX,
     "Yoru": Fore.BLUE,
-    "Phoenix": Fore.RED,
+    "Phoenix": Fore.LIGHTRED_EX,
     "Neon": Fore.LIGHTBLUE_EX,
     "Breach": Fore.YELLOW,
     "Skye": Fore.GREEN,
