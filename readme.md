@@ -9,9 +9,9 @@
 - Interval state changes
 
 ## Hardware requirements
-- CPU: Intel i5 or equivalent
+- CPU: Intel i3 or equivalent
 - RAM: 1GB minimum
-- Storage: 100MB of free space
+- Storage: 50MB of free space
 - OS: Windows 10 or later, macOS 10.15 or later, Linux (any modern distribution)
 - GPU: Integrated graphics sufficient, dedicated GPU recommended for better performance
 
@@ -19,6 +19,7 @@
 - `pip install json`
 - `pip install time`
 - `pip install valclient`
+- `pip install colorama`
 
 ## Todos before installing
 1. Make sure you have a code editor installed (I recommend Visual Studio Code but go ahead with any code editor)
@@ -32,6 +33,7 @@
    - `pip install json`
    - `pip install time`
    - `pip install valclient`
+   - `pip install colorama`
 5. Run the main.py and have fun!
 
 ## Licensing
