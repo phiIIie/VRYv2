@@ -1,5 +1,5 @@
 {
-    "region": "eu",
+    "region": null,
     "state_interval": 15,
-    "ran": true
+    "ran": false
 }
