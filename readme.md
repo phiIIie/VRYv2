@@ -1,11 +1,11 @@
 # VRYv2, Valorant fetcher
 
-### This program is used for fetching local game data for displaying different data depending on your needs.
+### This program is used to fetch local game data and display various information depending on your needs.
 
 ## Features
 - Display of hidden names
 - Display of agents and teamsides
-- Europa and Northamerica support
+- Europe and North America support
 - Interval state changes
 
 ## Hardware requirements
