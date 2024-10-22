@@ -1,21 +1,21 @@
 from agentmap import agentmap
 
 class Player: 
-    def __init__(self, client, puuid, agentID, incognito, team):
+    def __init__(self, client, p_uuid, agent_id, incognito, team):
         self.client = client
-        self.puuid = puuid
-        self.agentID = self.get_agent_name(agentID)
+        self.p_uuid = p_uuid
+        self.agent_id = self.get_agent_name(agent_id)
         self.incognito = incognito
         self.team = self.teamside(team)
-        self.name = self.set_name(puuid).split('#')[0]
-        self.full_name = self.set_name(puuid)
-        self.tag = self.set_name(puuid).split('#')[1]
+        self.name = self.set_name(p_uuid).split('#')[0]
+        self.full_name = self.set_name(p_uuid)
+        self.tag = self.set_name(p_uuid).split('#')[1]
 
-    def get_agent_name(self, agentID):
-        if agentID in agentmap:
-            return agentmap[agentID]
+    def get_agent_name(self, agent_id):
+        if agent_id in agentmap:
+            return agentmap[agent_id]
         else:
-            print(f"Agent ID {agentID} not found in agentmap.")
+            print(f"Agent ID {agent_id} not found in agentmap.")
             return "Unknown Agent"
 
     def teamside(self, color):
@@ -24,10 +24,10 @@ class Player:
         else:
             return "Attacking"
     
-    def set_name(self, puuid):
-        playerData = self.client.put(
+    def set_name(self, p_uuid):
+        player_data = self.client.put(
             endpoint="/name-service/v2/players", 
             endpoint_type="pd", 
-            json_data=[puuid]
+            json_data=[p_uuid]
         )[0]
-        return f"{playerData['GameName']}#{playerData['TagLine']}"
+        return f"{player_data['GameName']}#{player_data['TagLine']}"
