@@ -6,7 +6,7 @@ from colorama import init, Fore, Style
 import os
 
 running = True
-seenMatches = []
+seen_matches = []
 def clear_console():
 
     if os.name == 'nt':
@@ -16,18 +16,18 @@ def clear_console():
         os.system('clear')
 
 running = True
-seenMatches = []
+seen_matches = []
 
 clear_console()
 print(Fore.RED + 'VRYv2 Running'.center(120))
 
 with open('settings.json', 'r') as f:
     data = json.load(f)
-    ranbefore = data['ran']
+    ran_before = data['ran']
     region = data['region']
-    stateinterval = data['stateInterval']
+    state_interval = data['state_interval']
 
-if not ranbefore:
+if not ran_before:
     prompt = 'Enter your region: '
     padding = (120 - len(prompt)) // 2
     region = input(' ' * padding + prompt).lower()
@@ -52,37 +52,37 @@ print('Waiting for match to get detected....'.center(120) + Style.RESET_ALL)
 while running:
     time.sleep(30)
     try:
-        sessionState = client.fetch_presence(client.puuid)['sessionLoopState']
-        matchID = client.coregame_fetch_player()['MatchID']
+        session_state = client.fetch_presence(client.p_uuid)['sessionLoopState']
+        match_id = client.coregame_fetch_player()['match_id']
 
-        if sessionState == 'INGAME' and matchID not in seenMatches:
+        if session_state == 'INGAME' and match_id not in seen_matches:
             print('-' * 40)
             print('Match has been found. Loading data.')
-            seenMatches.append(matchID)
-            matchInfo = client.coregame_fetch_match(matchID)
+            seen_matches.append(match_id)
+            match_info = client.coregame_fetch_match(match_id)
             players = []
 
-            for player in matchInfo['Players']:
-                if client.puuid == player['Subject']:
-                    localPlayer = Player(
+            for player in match_info['Players']:
+                if client.p_uuid == player['Subject']:
+                    local_player = Player(
                         client=client,
-                        puuid=player['Subject'].lower(),
-                        agentID=player['CharacterID'].lower(),
+                        p_uuid=player['Subject'].lower(),
+                        agent_id=player['CharacterID'].lower(),
                         incognito=player['PlayerIdentity']['Incognito'],
                         team=player['TeamID']
                     )
                 else:
                     players.append(Player(
                         client=client,
-                        puuid=player['Subject'].lower(),
-                        agentID=player['CharacterID'].lower(),
+                        p_uuid=player['Subject'].lower(),
+                        agent_id=player['CharacterID'].lower(),
                         incognito=player['PlayerIdentity']['Incognito'],
                         team=player['TeamID']
                     ))
-            currentgame = Game(party=client.fetch_party(), matchID=matchID, players=players, localPlayer=localPlayer)
+            current_game = Game(party=client.fetch_party(), match_id=match_id, players=players, local_player=local_player)
             print('Printing Users:')
             print('-' *20)
-            currentgame.find_hidden_names(players)
+            current_game.find_hidden_names(players)
     except Exception as e:
         if 'core' not in str(e) and "NoneType" not in str(e):
             print("An error occurred: ", e)
