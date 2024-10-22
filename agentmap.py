@@ -17,7 +17,7 @@
 #     return agentmap
 # agents_list = get_agents_from_api()
 from colorama import init, Fore, Style
-agentmap = {
+agent_map = {
     "add6443a-41bd-e414-f6ad-e58d267f4e95": "Jett",
     "a3bfb853-43b2-7238-a4f1-ad90e9e46bcc": "Reyna",
     "f94c3b30-42be-e959-889c-5aa313dba261": "Raze",
