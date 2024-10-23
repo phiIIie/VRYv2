@@ -24,10 +24,10 @@ class Player:
         else:
             return "Attacking"
     
-    def set_name(self, puuid):
+    def set_name(self, p_uuid):
         player_data = self.client.put(
             endpoint="/name-service/v2/players", 
             endpoint_type="pd", 
-            json_data=[puuid]
+            json_data=[p_uuid]
         )[0]
         return f"{player_data['GameName']}#{player_data['TagLine']}"

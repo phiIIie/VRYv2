@@ -1,5 +1,6 @@
 from colorama import init, Fore, Style
 from agentmap import agent_map, agent_color_map
+from wcwidth import wcswidth
 
 class Game:
     def __init__(self, party, match_id, players, local_player):
@@ -23,22 +24,26 @@ class Game:
         for player in defenders:
             agent_color = agent_color_map.get(player.agent_id, Fore.WHITE)
             color = Fore.BLUE
+            name_width = wcswidth(player.full_name)
+            padding = 23 - name_width
             if player.incognito:
                 self.found = True
-                print(f"| {color}{player.team}{Style.RESET_ALL} | {agent_color}{player.agent_id.ljust(10)}{Style.RESET_ALL} | {color}{player.full_name.ljust(23)}{Style.RESET_ALL} Hidden |")
+                print(f"| {color}{player.team}{Style.RESET_ALL} | {agent_color}{player.agent_id.ljust(10)}{Style.RESET_ALL} | {color}{player.full_name}{' ' * padding}{Style.RESET_ALL} Hidden |")
             else:
-                print(f"| {color}{player.team}{Style.RESET_ALL} | {agent_color}{player.agent_id.ljust(10)}{Style.RESET_ALL} | {color}{player.full_name.ljust(23)}{Style.RESET_ALL} Not Hidden |")
+                print(f"| {color}{player.team}{Style.RESET_ALL} | {agent_color}{player.agent_id.ljust(10)}{Style.RESET_ALL} | {color}{player.full_name}{' ' * padding}{Style.RESET_ALL} Not Hidden |")
 
         print("\n" + "-" * 40 + "\n")
 
         for player in attackers:
             agent_color = agent_color_map.get(player.agent_id, Fore.WHITE)
             color = Fore.RED
+            name_width = wcswidth(player.full_name)
+            padding = 23 - name_width
             if player.incognito:
                 self.found = True
-                print(f"| {color}{player.team}{Style.RESET_ALL} | {agent_color}{player.agent_id.ljust(10)}{Style.RESET_ALL} | {color}{player.full_name.ljust(23)}{Style.RESET_ALL} Hidden |")
+                print(f"| {color}{player.team}{Style.RESET_ALL} | {agent_color}{player.agent_id.ljust(10)}{Style.RESET_ALL} | {color}{player.full_name}{' ' * padding}{Style.RESET_ALL} Hidden |")
             else:
-                print(f"| {color}{player.team}{Style.RESET_ALL} | {agent_color}{player.agent_id.ljust(10)}{Style.RESET_ALL} | {color}{player.full_name.ljust(23)}{Style.RESET_ALL} Not Hidden |")
+                print(f"| {color}{player.team}{Style.RESET_ALL} | {agent_color}{player.agent_id.ljust(10)}{Style.RESET_ALL} | {color}{player.full_name}{' ' * padding}{Style.RESET_ALL} Not Hidden |")
 
         if not self.found:
             print("No hidden names found")
