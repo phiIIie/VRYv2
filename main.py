@@ -56,12 +56,13 @@ while running:
         match_id = client.coregame_fetch_player()['MatchID']
 
         if session_state == 'INGAME' and match_id not in seen_matches:
-            print('-'.center(120) * 40)
+            print('-----------------------------------'.center(120))
             print('Match has been found. Loading data.'.center(120))
             seen_matches.append(match_id)
             match_info = client.coregame_fetch_match(match_id)
             players = []
-
+            server_region = match_info.get('ServerRegion', 'Unknown')
+            print(Fore.LIGHTRED_EX + f"Server Location: {server_region}" + Style.RESET_ALL)
             for player in match_info['Players']:
                 if client.puuid == player['Subject']:
                     local_player = Player(

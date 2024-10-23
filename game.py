@@ -10,16 +10,38 @@ class Game:
         self.party_players = self.find_party_members(party)
     
     def find_hidden_names(self, players):
-        self.found = True
+        self.found = False
+        defenders = []
+        attackers = []
+
         for player in players:
+            if player.team == "Defending":
+                defenders.append(player)
+            else:
+                attackers.append(player)
+
+        for player in defenders:
             agent_color = agent_color_map.get(player.agent_id, Fore.WHITE)
-            color = Fore.BLUE if player.team == "Defending" else Fore.RED
+            color = Fore.BLUE
             if player.incognito:
                 self.found = True
-                print(f"| {color}{player.team}{Style.RESET_ALL} | {agent_color} | {player.agentID.ljust(10)}{Style.RESET_ALL} | {color}{player.full_name.ljust(23)}{Style.RESET_ALL} Hidden |")
+                print(f"| {color}{player.team}{Style.RESET_ALL} | {agent_color}{player.agent_id.ljust(10)}{Style.RESET_ALL} | {color}{player.full_name.ljust(23)}{Style.RESET_ALL} Hidden |")
             else:
                 print(f"| {color}{player.team}{Style.RESET_ALL} | {agent_color}{player.agent_id.ljust(10)}{Style.RESET_ALL} | {color}{player.full_name.ljust(23)}{Style.RESET_ALL} Not Hidden |")
-            print("|" + "-" * 61 + "|")
+
+        print("\n" + "-" * 40 + "\n")
+
+        for player in attackers:
+            agent_color = agent_color_map.get(player.agent_id, Fore.WHITE)
+            color = Fore.RED
+            if player.incognito:
+                self.found = True
+                print(f"| {color}{player.team}{Style.RESET_ALL} | {agent_color}{player.agent_id.ljust(10)}{Style.RESET_ALL} | {color}{player.full_name.ljust(23)}{Style.RESET_ALL} Hidden |")
+            else:
+                print(f"| {color}{player.team}{Style.RESET_ALL} | {agent_color}{player.agent_id.ljust(10)}{Style.RESET_ALL} | {color}{player.full_name.ljust(23)}{Style.RESET_ALL} Not Hidden |")
+
+        if not self.found:
+            print("No hidden names found")
 
     def find_team_players(self, local_player, players):
         team_players = []
