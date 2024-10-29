@@ -17,7 +17,8 @@
 
 ## Libraries used
 - `pip install json`
-- `pip install time`
+- `pip install time` 
+- `pip install requests` 
 - `pip install valclient`
 - `pip install colorama`
 
@@ -30,8 +31,7 @@
 2. Extract the .Zip file inside your folder
 3. Open your code editor of choice and drag the file inside
 4. Open terminal and install the following libraries:
-   - `pip install json`
-   - `pip install time`
+   - `pip install requests` 
    - `pip install valclient`
    - `pip install colorama`
 5. Run the main.py and have fun!
